@@ -10,9 +10,9 @@ int main(){
         for(int j=0;j<3;j++){
             int v; cin >> v;
             if(v % 2 == 0){
-
+                            
             }
-            
+
         }
     }
 }
