@@ -1,64 +1,64 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-typedef long long ll;
-typedef long double ld;
-const ld PI = acos(-1.0);
-const ld E = exp(1.0);
- 
-const int MAXN = 2e7 + 10;
- 
-vector<vector<int>> trie(MAXN,vector<int> (2,0));
-int cnt = 1;
- 
-void insert(ll x)
+
+typedef long long int ll;
+
+
+struct  BinaryTrie
 {
-	int to = 1;
- 
-	for(int i = 31; i >= 0; --i)
-	{
-		int val = (x >> i) & 1;
-		if(!trie[to][val])
-			trie[to][val] = ++cnt;
-		to = trie[to][val];
-	}
-}
- 
-ll rfind(ll x)
-{
- 
-	ll ret = 0;
- 
-	int to = 1;
- 
-	for(int i = 31; i >= 0; --i)
-	{
-		int val = ((x >> i) & 1) ^ 1;
- 
-		if(!trie[to][val])
-			to = trie[to][val ^ 1];
-		else
-			to = trie[to][val], ret = ret + (1 << i);
-	}
- 
-	return ret;
-}
- 
-int main()
-{
-    ll n, x, ans = 0;
- 
-    cin >> n;
- 
-    for(int i = 0; i < n; ++i)
-    {
-    	cin >> x;
-    	if(i)
-    		ans = max(ans, rfind(x));
-    	insert(x);
+    BinaryTrie *next[2];
+    BinaryTrie() {
+        next[0] = nullptr;
+        next[1] = nullptr;
     }
- 
-    cout << ans << endl;
- 
-    return 0;
+};
+
+void Insert_num(BinaryTrie* &root, ll num) {
+    BinaryTrie*cur = root;
+    for (int i = 62; i >= 0; --i) {
+        ll c = ((num >> i) & 1);
+        if (!cur->next[c]) {
+            cur->next[c] = new BinaryTrie();
+        }
+        cur = cur->next[c];
+    }
+}
+BinaryTrie* BuildBinaryTrie(vector<ll>&nums) {
+    BinaryTrie* root = new BinaryTrie();
+    for (const ll& num : nums) {
+        Insert_num(root, num);
+    }
+    return root;
+}
+ll helper(BinaryTrie* &root, ll num) {
+    ll res = 0;
+    BinaryTrie *cur = root;
+    for (int i = 62; i >= 0; --i) {
+        ll c = ((num >> i) & 1) ? 0 : 1;
+        if (cur->next[c]) {
+            res |= (1 << i);
+            cur = cur->next[c];
+        }
+        else {
+            cur = cur->next[c ? 0 : 1];
+        }
+    }
+    return res;
+}
+   
+int main(){
+
+    int n; cin >> n;
+    vector<ll> nums(n);
+
+    for(ll i=0;i<n;i++) cin >> nums[i];
+
+    BinaryTrie *root = BuildBinaryTrie(nums);
+    ll maxn = 0;
+    for (const ll&n : nums) {
+        maxn = max(maxn, helper(root, n));
+    }
+    
+    cout << maxn << endl;
 }
