@@ -5,6 +5,7 @@ using namespace std;
 int main(){
     int t; cin >> t;
     
+    
     for(int x=1;x<=t;x++){
         int n; cin >> n;
         int k = 0;
