@@ -54,11 +54,34 @@ int main(){
 
     for(ll i=0;i<n;i++) cin >> nums[i];
 
-    BinaryTrie *root = BuildBinaryTrie(nums);
-    ll maxn = 0;
-    for (const ll&n : nums) {
-        maxn = max(maxn, helper(root, n));
-    }
+      ll max = 0, mask = 0;
+        unordered_set<ll> t;
+        // search from left to right, find out for each bit is there 
+        // two numbers that has different value
+        for (int i = 31; i >= 0; i--){
+            // mask contains the bits considered so far
+            mask |= (1 << i);
+            t.clear();
+            // store prefix of all number with right i bits discarded
+            for (ll n: nums){
+                t.insert(mask & n);
+            }
+            
+            // now find out if there are two prefix with different i-th bit
+            // if there is, the new max should be current max with one 1 bit at i-th position, which is candidate
+            // and the two prefix, say A and B, satisfies:
+            // A ^ B = candidate
+            // so we also have A ^ candidate = B or B ^ candidate = A
+            // thus we can use this method to find out if such A and B exists in the set 
+            ll candidate = max | (1<<i);
+            for (ll prefix : t){
+                if (t.find(prefix ^ candidate) != t.end()){
+                    max = candidate;
+                    break;
+                }
+                
+            }
+        }
     
-    cout << maxn << endl;
+    cout << max << endl;
 }
