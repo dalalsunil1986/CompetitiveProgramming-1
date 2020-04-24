@@ -20,7 +20,6 @@ int main(){
                         for(int v=j; v<3;v++){
                             if(map[x][y] != -1 && map[i][j] != -1  && map[c][v] != -1 ){
                                 string num = to_string(map[x][y]) + to_string(map[i][j]) + to_string(map[c][v]);
-
                                 string num2 = to_string(map[i][j]) + to_string(map[c][v]);
                                 string num3 = to_string(map[c][v]);
                                 

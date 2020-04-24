@@ -14,6 +14,7 @@ int main(){
         cin >> a[i];
         sum += a[i];
         sumd += pow(a[i],2);
+        
     }
  
     long long int sumsq = pow(sum,2); 

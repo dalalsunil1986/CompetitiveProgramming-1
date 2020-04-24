@@ -18,6 +18,7 @@ int main(){
 
         tiempos --;
         cin >> v;
+    
     }
 
     cout << total << " " << mx << endl;
