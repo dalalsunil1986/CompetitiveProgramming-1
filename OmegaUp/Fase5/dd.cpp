@@ -14,6 +14,7 @@ int sub(int v){
    }
    
     return total;
+    
 }
 int getS(int x){
     int d = (x/4.0);
