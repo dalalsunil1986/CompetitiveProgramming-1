@@ -18,6 +18,8 @@ int getS(int x){
     select =  (int)pow(2,d+2)-x-1;
     return (pow(2,d+2)/2)*log2(pow(2,d+2)) - sub(select);
     }
+
+    
 int main(){
     nums.push_back(1);
 
