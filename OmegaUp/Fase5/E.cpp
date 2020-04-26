@@ -21,6 +21,7 @@ int getS(int x){
 int main(){
     nums.push_back(1);
 
+
     while(nums.size() < 100){
         vector<int> tmp = nums;
         nums.push_back(pow(2,i));
