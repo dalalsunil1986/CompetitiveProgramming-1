@@ -27,7 +27,6 @@ int main(){
         nums.insert(nums.end(),tmp.begin(),tmp.end());
        i++;
    }
-
    //for(int num : nums) cout << num << " "; 
 
     int n; cin >> n;
