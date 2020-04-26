@@ -19,9 +19,10 @@ int getS(int x){
     return (pow(2,d+2)/2)*log2(pow(2,d+2)) - sub(select);
     }
 
-    
+
 int main(){
     nums.push_back(1);
+
 
 
     while(nums.size() < 100){
