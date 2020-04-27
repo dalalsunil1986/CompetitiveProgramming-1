@@ -7,12 +7,12 @@
 using namespace std;
 
 int main(){
-    int n,w; cin >> n >> w;
+    ll n,w; cin >> n >> w;
 
-    vector<pair<int,int>> v;
+    vector<pair<ll,ll>> v;
 
     for(int i=0;i<n;i++){
-        int a,b; cin >> a >> b;
+        ll a,b; cin >> a >> b;
         v.push_back({a,b});
     }
 
@@ -27,6 +27,6 @@ int main(){
             }
         }
     }
-    
+
     cout << dp[n][w] << endl;
 }
